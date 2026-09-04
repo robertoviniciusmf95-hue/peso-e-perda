@@ -1,0 +1,62 @@
+/* ===== LOGIN: ARIAL EM NEGRITO ===== */
+#authScreen,
+#authScreen *{
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+#authScreen .brand,
+#authScreen .brand small,
+#authScreen label,
+#authScreen input,
+#authScreen button,
+#authScreen .msg,
+#authScreen div{
+  font-weight: 700;
+}
+
+#authScreen .brand{
+  font-size: 34px;
+  letter-spacing: -0.5px;
+}
+
+#authScreen .brand small{
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#authScreen input{
+  font-weight: 700;
+}
+
+#authScreen .btn{
+  font-weight: 700;
+}
+
+
+/* ===== LOGIN SOMENTE COM LOGO ===== */
+#authScreen .login{
+  text-align:center;
+}
+#authScreen .login-logo-wrap{
+  margin-bottom:18px !important;
+}
+
+
+/* ===== MARCA INTERNA: SOMENTE LOGO ===== */
+.saas-brand{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:6px 8px 18px !important;
+}
+.saas-brand-only-logo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+.saas-brand-only-logo .saas-logo{
+  width:64px !important;
+  height:64px !important;
+  border-radius:16px !important;
+}
