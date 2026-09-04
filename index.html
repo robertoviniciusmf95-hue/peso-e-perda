@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Peso & Perda — SaaS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="authScreen" class="auth">
+  <div class="login">
+    <div class="login-logo-wrap"><img src="logo://peso-e-perda" alt="Logo Peso e Perda" class="login-logo"></div>
+<div class="field"><label>USUÁRIO</label><input id="loginUser"></div>
+    <div class="field"><label>SENHA</label><input id="loginPass" type="password"></div>
+    <div id="loginMsg" class="msg"></div>
+    <button class="btn primary" style="width:100%;padding:11px" id="loginButton">Entrar</button>
+    
+  </div>
+</div>
+
+<div id="mainApp" class="app hidden">
+  <div id="saasShell" class="saas-shell">
+    <aside class="saas-sidebar">
+      <div class="saas-brand">
+        <div class="saas-brand-only-logo">
+          <img src="logo://peso-e-perda" alt="Logo Peso e Perda" class="saas-logo small">
+        </div>
+      </div>
+
+      <nav class="saas-nav">
+        <button class="saas-nav-btn active" data-saas-go="1">
+          <span class="saas-nav-index">1</span>
+          <span>Cardápio</span>
+        </button>
+        <button class="saas-nav-btn" data-saas-go="2">
+          <span class="saas-nav-index">2</span>
+          <span>Pesos</span>
+        </button>
+        <button class="saas-nav-btn" data-saas-go="3">
+          <span class="saas-nav-index">3</span>
+          <span>Reposição</span>
+        </button>
+        <button class="saas-nav-btn" data-saas-go="4">
+          <span class="saas-nav-index">4</span>
+          <span>Fechamento</span>
+        </button>
+        <button class="saas-nav-btn" data-saas-go="5">
+          <span class="saas-nav-index">5</span>
+          <span>Resumo</span>
+        </button>
+        <button class="saas-nav-btn" data-saas-go="6">
+          <span class="saas-nav-index">6</span>
+          <span>Histórico</span>
+        </button>
+        <button id="adminNavButton" class="saas-nav-btn hidden" data-saas-go="7">
+          <span class="saas-nav-index">ADM</span>
+          <span>Administração</span>
+        </button>
+      </nav>
+
+      <div class="saas-sidebar-footer">
+        <div class="saas-user-card">
+          <div class="saas-avatar">PP</div>
+          <div class="saas-user-meta">
+            <b id="saasLoggedUser">Usuário</b>
+            <span>Sessão ativa</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="saas-main">
+      <header class="saas-topbar">
+        <div style="display:flex;align-items:center;gap:10px">
+          <button id="saasMenuToggle" class="saas-mobile-toggle">☰</button>
+          <div class="saas-page-title">
+            <b id="saasPageTitle">Cardápio do Dia</b>
+            <span id="saasPageSubtitle">Selecione os pratos que estão no buffet</span>
+          </div>
+        </div>
+        <div class="saas-top-actions">
+          <div class="saas-status"><span class="saas-status-dot"></span> Sistema ativo</div>
+          <button id="saasLogoutButton" class="btn">Sair</button>
+        </div>
+      </header>
+
+      <div class="saas-content">
+
+  <div class="topbar">
+    <span>Usuário: <b id="loggedUser"></b></span>
+    <button id="adminButton" class="btn hidden">Usuários</button>
+    <button id="logoutButton" class="btn">Sair</button>
+  </div>
+<div class="steps">
+    <div id="s1" class="step active">1. Cardápio</div>
+    <div id="s2" class="step">2. Pesos</div>
+    <div id="s3" class="step">3. Reposição</div>
+    <div id="s4" class="step">4. Fechamento</div>
+    <div id="s5" class="step">5. Resumo</div>
+  </div>
+<section id="step1" class="card">
+    <div class="card-head">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+        <div>
+          <h1>1. Cardápio do Dia</h1>
+          <div class="desc">Os itens padrão já vêm marcados. <b>Tudo que estiver marcado aqui aparecerá na Reposição.</b></div>
+        </div>
+        <div class="logo-badge">● Padrão visual verde aplicado</div>
+      </div>
+    </div>
+    <div id="categories"></div>
+<div class="footer">
+      <div class="desc"><b id="selectedCount">0</b> pratos selecionados</div>
+      <div><button class="btn" id="clearBtn">Limpar</button> <button class="btn primary" id="confirmMenuBtn">Confirmar cardápio</button></div>
+    </div>
+  </section>
+
+  <section id="step2" class="panel hidden">
+    <h1>2. Peso Inicial + Travessa</h1>
+    <div class="desc">Informe o peso com a travessa e selecione qual travessa está sendo usada.</div>
+    <div class="searchrow">
+      <input id="weightSearch" placeholder="Buscar prato...">
+      <div id="weightSummary" class="summary-pill"></div>
+    </div>
+    <div id="weightsList"></div>
+    <div class="footer" style="margin:18px -22px -22px">
+      <button class="btn" data-go="1">Voltar</button>
+      <button class="btn primary" id="toRepoBtn">Ir para reposição</button>
+    </div>
+  </section>
+
+  <section id="step3" class="panel hidden">
+    <h1>3. Reposição do Buffet</h1>
+    <div class="desc"><b>Lista exata dos pratos marcados no Cardápio.</b> Digite o peso reposto ao lado do prato e clique em Incluir.</div>
+    <div class="searchrow">
+      <input id="repoSearch" placeholder="Buscar prato...">
+      <div id="repoSummary" class="summary-pill"></div>
+    </div>
+    <div id="recentRepos" class="recent hidden"></div>
+    <div id="repoList"></div>
+    <div class="footer" style="margin:18px -22px -22px">
+      <button class="btn" data-go="2">Voltar</button>
+      <button class="btn primary" data-go="4">Ir para fechamento</button>
+    </div>
+  </section>
+
+  <section id="step4" class="panel hidden">
+    <h1>4. Fechamento</h1>
+    <div class="desc">Informe o peso final com a travessa. A tara será descontada automaticamente.</div>
+    <div id="closingList" style="margin-top:14px"></div>
+    <div class="footer" style="margin:18px -22px -22px">
+      <button class="btn" data-go="3">Voltar</button>
+      <button class="btn green" id="finishBtn">Finalizar e ver resumo</button>
+    </div>
+  </section>
+
+  <section id="step5" class="panel hidden">
+    <h1>5. Resumo do Dia</h1>
+    <div id="summaryView"></div>
+    <div class="footer" style="margin:18px -22px -22px">
+      <button class="btn" data-go="4">Voltar ao fechamento</button>
+      <button class="btn" data-go="1">Cardápio</button>
+    </div>
+  </section>
+
+
+  <section id="step6" class="panel hidden">
+    <h1>Histórico por Dia</h1>
+    <div class="desc">Escolha uma data para consultar o resultado salvo e baixar aquele dia em Excel.</div>
+
+    <div class="history-toolbar">
+      <div class="field">
+        <label>DATA</label>
+        <input id="historyDate" type="date">
+      </div>
+      <button id="historySearchBtn" class="btn primary">Buscar dia</button>
+      <button id="historyTodayBtn" class="btn">Hoje</button>
+      <div id="historyAvailable" class="history-available"></div>
+    </div>
+
+    <div id="historyDayChips" class="history-day-list"></div>
+    <div id="historyResult" style="margin-top:14px"></div>
+  </section>
+
+  <section id="step7" class="panel hidden">
+    <div class="admin-page-head">
+      <div>
+        <h1>Administração do Sistema</h1>
+        <div class="desc">Área exclusiva do ADM. Todos os cadastros e controles gerais ficam reunidos aqui.</div>
+      </div>
+      <div class="admin-lock-badge">Acesso exclusivo do ADM</div>
+    </div>
+
+    <div class="admin-general-summary">
+      <div class="admin-general-summary-item">
+        <span>Usuários e acessos</span>
+        <b>Controle de entrada</b>
+      </div>
+      <div class="admin-general-summary-item">
+        <span>Pratos</span>
+        <b>Cadastro do cardápio</b>
+      </div>
+      <div class="admin-general-summary-item">
+        <span>Travessas</span>
+        <b>Cadastro de tara</b>
+      </div>
+    </div>
+
+    <div class="admin-section-block">
+      <div class="admin-section-title">
+        <div>
+          <h2>1. Usuários e Acessos</h2>
+          <div class="desc">Cadastre usuários, defina o perfil e libere ou bloqueie o acesso ao sistema.</div>
+        </div>
+      </div>
+
+      <div class="admin-create-card">
+        <h2>Cadastrar novo usuário</h2>
+        <div class="admin-create-grid">
+          <div><label>Nome</label><input id="newName" placeholder="Nome completo"></div>
+          <div><label>Usuário</label><input id="newUsername" placeholder="Usuário de acesso" autocomplete="off"></div>
+          <div><label>Senha inicial</label><input id="newPassword" type="password" placeholder="Senha" autocomplete="new-password"></div>
+          <div><label>Perfil</label><select id="newRole"><option value="user">Usuário</option><option value="admin">Administrador</option></select></div>
+          <div><label>Acesso</label><select id="newActive"><option value="true">Liberado</option><option value="false">Bloqueado</option></select></div>
+          <button class="btn primary admin-create-submit" id="createUserBtn">Cadastrar</button>
+        </div>
+        <div id="adminMsg" class="msg"></div>
+      </div>
+
+      <div id="adminStats" class="admin-stats"></div>
+      <div id="userList"></div>
+    </div>
+
+    <div class="admin-section-block">
+      <div class="admin-section-title">
+        <div>
+          <h2>2. Cadastro de Pratos</h2>
+          <div class="desc">Cadastre novos pratos e escolha a categoria onde eles aparecerão no Cardápio.</div>
+        </div>
+      </div>
+
+      <div class="admin-catalog-form">
+        <div class="field" style="margin:0">
+          <label>NOME DO PRATO</label>
+          <input id="catalogDishName" placeholder="Ex.: Purê de batata">
+        </div>
+        <div class="field" style="margin:0">
+          <label>CATEGORIA</label>
+          <select id="catalogDishCategory">
+            <option>Entradas, saladas e frios</option>
+            <option>Guarnições e pratos quentes</option>
+            <option>Proteínas</option>
+            <option>Sobremesas</option>
+            <option>Outros</option>
+          </select>
+        </div>
+        <button id="catalogDishAddBtn" class="btn primary">Cadastrar prato</button>
+      </div>
+
+      <div id="catalogDishMsg" class="msg"></div>
+      <div id="catalogDishList" class="admin-catalog-list"></div>
+    </div>
+
+    <div class="admin-section-block">
+      <div class="admin-section-title">
+        <div>
+          <h2>3. Cadastro de Travessas</h2>
+          <div class="desc">Cadastre travessas e informe a tara em kg para utilização na etapa Pesos.</div>
+        </div>
+      </div>
+
+      <div class="admin-catalog-form tray">
+        <div class="field" style="margin:0">
+          <label>NOME DA TRAVESSA</label>
+          <input id="catalogTrayName" placeholder="Ex.: Panela média">
+        </div>
+        <div class="field" style="margin:0">
+          <label>TARA (KG)</label>
+          <input id="catalogTrayWeight" type="number" step="0.001" min="0" inputmode="decimal" placeholder="0,000">
+        </div>
+        <button id="catalogTrayAddBtn" class="btn primary">Cadastrar travessa</button>
+      </div>
+
+      <div id="catalogTrayMsg" class="msg"></div>
+      <div id="catalogTrayList" class="admin-catalog-list"></div>
+    </div>
+
+    <div class="admin-note">
+      Nesta versão local, usuários, pratos e travessas ficam salvos no navegador/dispositivo onde o sistema é utilizado.
+    </div>
+  </section>
+
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="logo-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
