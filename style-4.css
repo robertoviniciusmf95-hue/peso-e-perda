@@ -1,0 +1,55 @@
+/* ===== ABA ADM: USUÁRIOS E ACESSOS ===== */
+.admin-page-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}
+.admin-page-head h1{margin-bottom:5px}
+.admin-lock-badge{display:inline-flex;align-items:center;gap:6px;background:#edf8ee;color:#0b7b3d;border:1px solid #d5ead9;padding:7px 10px;border-radius:999px;font-size:9px;font-weight:900}
+.admin-create-card{border:1px solid #dbe8df;background:#f8fcf9;border-radius:12px;padding:16px;margin-bottom:18px}
+.admin-create-card h2{font-size:13px;margin:0 0 5px}
+.admin-create-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr .8fr .8fr auto;gap:9px;align-items:end;margin-top:12px}
+.admin-create-grid label{display:block;font-size:8px;font-weight:900;color:#63776d;text-transform:uppercase;margin-bottom:4px}
+.admin-create-grid input,.admin-create-grid select{width:100%;padding:10px;border:1px solid #cfe0d3;border-radius:8px;background:#fff}
+.admin-stats{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:10px;margin:14px 0}
+.admin-stat{border:1px solid #dbe8df;border-radius:10px;padding:12px;background:#fff}
+.admin-stat span{display:block;font-size:8px;text-transform:uppercase;font-weight:900;color:#718178}
+.admin-stat b{display:block;font-size:19px;margin-top:3px;color:#005f2f}
+.admin-users-wrap{overflow:auto;border:1px solid #dbe8df;border-radius:12px;background:#fff}
+.admin-users-table{min-width:820px;width:100%;border-collapse:collapse;font-size:10px}
+.admin-users-table th{background:#f3f9f4;color:#53695c;font-size:8px;text-transform:uppercase;letter-spacing:.04em}
+.admin-users-table th,.admin-users-table td{padding:11px 12px;border-bottom:1px solid #e7efe9;text-align:left;vertical-align:middle}
+.admin-users-table tr:last-child td{border-bottom:0}
+.access-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;font-size:8px;font-weight:900}
+.access-badge.active{background:#eaf7ed;color:#08783b}
+.access-badge.inactive{background:#fff0f0;color:#a13d3d}
+.role-badge{display:inline-block;padding:5px 8px;border-radius:7px;background:#eef4ef;color:#456151;font-size:8px;font-weight:900}
+.admin-actions{display:flex;gap:6px;flex-wrap:wrap}
+.admin-actions button{padding:7px 9px;font-size:8px}
+.btn.danger{background:#fff;border-color:#e6caca;color:#a13d3d}
+.btn.access{background:#edf8ee;border-color:#cde7d3;color:#08783b}
+.admin-master-note{font-size:8px;color:#7a887f;margin-top:3px}
+@media(max-width:900px){.admin-create-grid{grid-template-columns:1fr 1fr}.admin-create-grid .admin-create-submit{grid-column:1/-1}.admin-stats{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:650px){.admin-create-grid{grid-template-columns:1fr}.admin-stats{grid-template-columns:1fr}}
+
+/* ===== ABA ADM: CADASTROS ===== */
+.admin-catalog-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.admin-catalog-card{border:1px solid #d9e7de;border-radius:14px;background:#fff;padding:18px}
+.admin-catalog-card h2{margin:0 0 5px;font-size:15px}
+.admin-catalog-form{display:grid;grid-template-columns:1.4fr 1fr auto;gap:8px;margin-top:12px;align-items:end}
+.admin-catalog-form.tray{grid-template-columns:1.3fr .8fr auto}
+.admin-catalog-form input,.admin-catalog-form select{width:100%;padding:10px;border:1px solid #cfded3;border-radius:8px}
+.admin-catalog-list{margin-top:14px;display:flex;flex-direction:column;gap:7px;max-height:430px;overflow:auto}
+.admin-catalog-row{display:grid;grid-template-columns:minmax(150px,1fr) minmax(110px,.8fr) auto;gap:8px;align-items:center;padding:9px 10px;border:1px solid #e0ebe3;border-radius:9px;background:#f9fcfa}
+.admin-catalog-row b{font-size:10px}.admin-catalog-row span{font-size:9px;color:#667a6e}
+.admin-catalog-actions{display:flex;gap:5px;justify-content:flex-end}
+.btn.danger{background:#fff;color:#a53f3f;border-color:#eccaca}.btn.small{padding:6px 8px;font-size:9px}
+.admin-note{padding:10px 12px;border-radius:10px;background:#f0f9f2;border:1px solid #d5ead9;color:#456554;font-size:9px;margin-top:12px}
+@media(max-width:850px){.admin-catalog-grid{grid-template-columns:1fr}.admin-catalog-form,.admin-catalog-form.tray{grid-template-columns:1fr}}
+
+/* ===== CENTRAL ADMINISTRATIVA ===== */
+.admin-general-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.admin-general-summary-item{border:1px solid #d9e8dd;background:#f5fbf6;border-radius:11px;padding:13px}
+.admin-general-summary-item span{display:block;font-size:9px;color:#66796d;font-weight:800;text-transform:uppercase}
+.admin-general-summary-item b{display:block;font-size:12px;margin-top:4px;color:#17472f}
+.admin-section-block{border:1px solid #dce8df;background:#fff;border-radius:14px;padding:18px;margin-top:16px}
+.admin-section-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
+.admin-section-title h2{margin:0 0 4px;font-size:15px}
+#step7 .admin-create-card{margin-top:10px}#step7 .admin-catalog-list{max-height:360px}
+@media(max-width:850px){.admin-general-summary{grid-template-columns:1fr}}
