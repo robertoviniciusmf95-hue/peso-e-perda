@@ -1,0 +1,21 @@
+/* ===== HISTÓRICO POR DIA ===== */
+.history-toolbar{display:grid;grid-template-columns:minmax(180px,240px) auto auto 1fr;gap:9px;align-items:end;margin:16px 0;padding:14px;border:1px solid #dce8df;border-radius:12px;background:#f8fcf9}
+.history-toolbar .field{margin:0}.history-toolbar input{width:100%;padding:10px;border:1px solid #cfded3;border-radius:8px}
+.history-available{text-align:right;font-size:9px;color:#687b70;align-self:center}
+.history-day-card{border:1px solid #dce8df;border-radius:14px;background:#fff;overflow:hidden}
+.history-day-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #e4ece6;background:#fbfdfb}
+.history-day-head h2{margin:0;font-size:16px}.history-day-date{font-size:10px;color:#65786d;margin-top:3px}
+.history-empty{padding:32px 18px;text-align:center;border:1px dashed #cbdcd0;border-radius:12px;color:#67796f;background:#fbfdfb;font-size:11px}
+.history-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 18px 4px}
+.history-kpi{border:1px solid #dce8df;border-radius:11px;padding:12px;background:#fff}
+.history-kpi span{display:block;font-size:8px;text-transform:uppercase;color:#6f8176;font-weight:800}
+.history-kpi b{display:block;margin-top:4px;font-size:17px;color:#173326}
+.history-kpi.loss{background:#fff8f8;border-color:#efd6d6}.history-kpi.loss b{color:#a74545}
+.history-kpi.good{background:#f3faf5;border-color:#d2e8d7}.history-kpi.good b{color:#007a3d}
+.history-table-area{padding:14px 18px 18px}.history-table-area h3{margin:0 0 9px;font-size:12px}.history-repos{margin-top:16px}
+.history-export-btn{background:linear-gradient(180deg,#0b8f47 0%,#007a3d 100%)!important;color:#fff!important;border-color:#007a3d!important}
+.history-day-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.history-day-chip{border:1px solid #d8e5dc;border-radius:999px;background:#fff;padding:6px 9px;font-size:9px;font-weight:800;color:#527060;cursor:pointer}
+.history-day-chip:hover{background:#edf8ee;border-color:#bcdac4}
+@media(max-width:900px){.history-toolbar{grid-template-columns:1fr 1fr}.history-available{grid-column:1/-1;text-align:left}.history-kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.history-toolbar{grid-template-columns:1fr}.history-kpis{grid-template-columns:1fr}.history-day-head{align-items:flex-start;flex-direction:column}}
