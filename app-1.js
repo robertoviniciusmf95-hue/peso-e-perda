@@ -191,3 +191,16 @@ function removeCatalogTray(index){
   renderCatalogAdmin();
   if(typeof renderWeights==="function") renderWeights();
 }
+
+if(!window.__sharedDishesLoader){
+  window.__sharedDishesLoader=true;
+  const link=document.createElement("link");
+  link.rel="stylesheet";
+  link.href="shared-dishes.css";
+  document.head.appendChild(link);
+  window.addEventListener("load",()=>{
+    const script=document.createElement("script");
+    script.src="shared-dishes.js";
+    document.body.appendChild(script);
+  });
+}
