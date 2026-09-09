@@ -9,3 +9,19 @@ function xlsxZipStore(files){const localParts=[],centralParts=[];let offset=0;fi
 function xlsxColumnName(index){let n=index+1,s="";while(n>0){const r=(n-1)%26;s=String.fromCharCode(65+r)+s;n=Math.floor((n-1)/26)}return s}
 function xlsxCell(ref,value,style=0,type=null){if(value===null||value===undefined||value==="")return`<c r="${ref}" s="${style}"/>`;if(type==="n"||(type===null&&typeof value==="number"&&Number.isFinite(value)))return`<c r="${ref}" s="${style}"><v>${Number(value)}</v></c>`;return`<c r="${ref}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xlsxXmlEscape(value)}</t></is></c>`}
 function xlsxSheetXml(rows,widths=[],merges=[]){const rowXml=rows.map((row,ri)=>{const cells=row.map((cell,ci)=>{if(cell===null||cell===undefined)return"";const obj=(typeof cell==="object"&&!Array.isArray(cell)&&"v" in cell)?cell:{v:cell};const ref=xlsxColumnName(ci)+(ri+1);return xlsxCell(ref,obj.v,obj.s||0,obj.t||null)}).join("");return`<row r="${ri+1}">${cells}</row>`}).join("");const cols=widths.length?`<cols>${widths.map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`).join("")}</cols>`:"";const mergeXml=merges.length?`<mergeCells count="${merges.length}">${merges.map(m=>`<mergeCell ref="${m}"/>`).join("")}</mergeCells>`:"";return`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">${cols}<sheetData>${rowXml}</sheetData>${mergeXml}</worksheet>`}
+
+(function loadClosingConfirmation(){
+  const load=()=>{
+    if(window.__closingConfirmationLoader) return;
+    window.__closingConfirmationLoader=true;
+    const css=document.createElement("link");
+    css.rel="stylesheet";
+    css.href="closing-confirmation.css";
+    document.head.appendChild(css);
+    const script=document.createElement("script");
+    script.src="closing-confirmation.js";
+    document.body.appendChild(script);
+  };
+  if(document.readyState==="complete") load();
+  else window.addEventListener("load",load,{once:true});
+})();
